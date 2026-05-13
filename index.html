@@ -195,6 +195,7 @@ em{font-style:italic}
 .book-name{font-size:1.2rem;margin-bottom:.2rem}
 .book-sub2{font-style:italic;color:var(--paper-dim);font-size:.95rem;line-height:1.4}
 .book-cover-img{width:100%;height:100%;object-fit:cover;display:block}
+.form-error{font-family:var(--mono);font-size:.7rem;color:var(--rust);letter-spacing:.06em;margin-bottom:.5rem}
 .book-buy{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
 .book-buy-link{font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(210,163,92,.35);padding:.3rem .6rem;transition:background .2s,color .2s}
 .book-buy-link:hover{background:var(--gold);color:var(--forest)}
@@ -282,6 +283,13 @@ em{font-style:italic}
 </head>
 <body>
 <template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#1d2e22"/><text x="50" y="58" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="34" fill="#ece5d2">LM</text></svg></template>
+<!-- Netlify Forms detection (hidden, mirrors the React form) -->
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <select name="reason"><option value="retreat" /><option value="pilgrimage" /><option value="press" /><option value="dharma" /><option value="other" /></select>
+  <textarea name="note"></textarea>
+</form>
 <div id="root"></div>
 
 <script>

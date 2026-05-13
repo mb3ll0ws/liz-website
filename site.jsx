@@ -659,7 +659,26 @@ function Pilgrimages() {
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", reason: "retreat", note: "" });
   const [sent, setSent] = useState(false);
-  const onSubmit = (e) => { e.preventDefault(); setSent(true); };
+  const [error, setError] = useState(false);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+    const data = new FormData();
+    data.append("form-name", "contact");
+    data.append("name", form.name);
+    data.append("email", form.email);
+    data.append("reason", form.reason);
+    data.append("note", form.note);
+    try {
+      const res = await fetch("/", { method: "POST", body: data });
+      if (res.ok) setSent(true);
+      else setError(true);
+    } catch {
+      setError(true);
+    }
+  };
+
   return (
     <section className="page contact">
       <PageTitle eyebrow="07 / Contact" title="Write a letter" />
@@ -667,11 +686,9 @@ function Contact() {
         <div className="contact-text">
           <p>
             Liz reads what arrives. Replies are slow but real. For booking,
-            press, and sangha questions — the form to the right will reach her
-            assistant first, then her.
+            press, and sangha questions — the form to the right will reach her.
           </p>
           <div className="contact-direct">
-            <div className="cd-row"><span>Email</span><a href="mailto:liz@lamaliz.org">liz@lamaliz.org</a></div>
             <div className="cd-row"><span>Wonderwell</span><a href="https://wonderwellrefuge.org" target="_blank" rel="noreferrer">wonderwellrefuge.org</a></div>
             <div className="cd-row"><span>NDF</span><a href="https://naturaldharma.org" target="_blank" rel="noreferrer">naturaldharma.org</a></div>
           </div>
@@ -683,18 +700,20 @@ function Contact() {
             <p>Thank you. Someone will write back within a week. May you be well in the meantime.</p>
           </div>
         ) : (
-          <form className="contact-form" onSubmit={onSubmit}>
+          <form className="contact-form" name="contact" onSubmit={onSubmit}>
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
             <label>
               <span>Your name</span>
-              <input value={form.name} onChange={e=>setForm({...form, name:e.target.value})} required />
+              <input name="name" value={form.name} onChange={e=>setForm({...form, name:e.target.value})} required />
             </label>
             <label>
               <span>Email</span>
-              <input type="email" value={form.email} onChange={e=>setForm({...form, email:e.target.value})} required />
+              <input type="email" name="email" value={form.email} onChange={e=>setForm({...form, email:e.target.value})} required />
             </label>
             <label>
               <span>What's this about?</span>
-              <select value={form.reason} onChange={e=>setForm({...form, reason:e.target.value})}>
+              <select name="reason" value={form.reason} onChange={e=>setForm({...form, reason:e.target.value})}>
                 <option value="retreat">A retreat or teaching</option>
                 <option value="pilgrimage">The Bhutan pilgrimage</option>
                 <option value="press">Press or interview</option>
@@ -704,8 +723,9 @@ function Contact() {
             </label>
             <label>
               <span>Your note</span>
-              <textarea rows="5" value={form.note} onChange={e=>setForm({...form, note:e.target.value})} />
+              <textarea name="note" rows="5" value={form.note} onChange={e=>setForm({...form, note:e.target.value})} />
             </label>
+            {error && <p className="form-error">Something went wrong — please try again or email directly.</p>}
             <button type="submit" className="btn">Send the letter →</button>
           </form>
         )}
