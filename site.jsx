@@ -15,12 +15,53 @@ const NAV = [
 ];
 
 const ESSAYS = [
+  // ── published elsewhere ──
+  {
+    slug: "natural-world-teacher",
+    date: "08.12.2024",
+    title: "The Natural World as a Powerful Teacher",
+    dek: "How the natural world can do far more than provide a peaceful environment for meditation.",
+    publication: "Lion's Roar",
+    url: "https://www.lionsroar.com/the-natural-world-as-a-powerful-teacher/",
+  },
+  {
+    slug: "holding-still",
+    date: "12.15.2023",
+    title: "Holding Still in the Middle of Fire",
+    dek: "On pilgrimage in Bhutan when the borders began to close — and the power of stillness in chaos.",
+    publication: "Lion's Roar",
+    url: "https://www.lionsroar.com/holding-still-in-the-middle-of-fire/",
+  },
+  {
+    slug: "brilliant-scholar",
+    date: "12.10.2023",
+    title: "From Brilliant Scholar to Wandering Yogi",
+    dek: "The story of a transformation from fierce pandita to wild, unguarded presence.",
+    publication: "Lion's Roar",
+    url: "https://www.lionsroar.com/from-brilliant-scholar-to-wandering-yogi/",
+  },
+  {
+    slug: "pilgrimage-unbound",
+    date: "11.2019",
+    title: "Buddhist Pilgrimage Unbound",
+    dek: "A four-part dharma talk series on framing ordinary daily life within a context of sacredness.",
+    publication: "Tricycle",
+    url: "https://tricycle.org/dharmatalks/buddhist-pilgrimage/",
+  },
+  {
+    slug: "technologies-of-transformation",
+    date: "2021",
+    title: "Technologies of Transformation: The Power of Spiritual Autobiography",
+    dek: "Writing one's life story as both personal liberation and an offering to others' awakening.",
+    publication: "Insight Journal",
+    url: "https://www.buddhistinquiry.org/article/technologies-of-transformation-the-power-of-spiritual-autobiography/",
+  },
+  // ── on this site ──
   {
     slug: "coming-soon",
-    date: "05.13.2026",
+    date: "05.2026",
     title: "Coming Soon",
     dek: "New writing is on its way.",
-    minutes: null,
   },
 ];
 
@@ -277,13 +318,15 @@ function HomeWindow() {
 function FeaturedRow() {
   const featured = ESSAYS[0];
   const next = RETREATS.find(r => r.status !== "ongoing");
+  const featuredHref = featured.url || `#/essay/${featured.slug}`;
+  const featuredExternal = !!featured.url;
   return (
     <div className="featured-row">
-      <a className="fr-card fr-essay" href={`#/essay/${featured.slug}`}>
+      <a className="fr-card fr-essay" href={featuredHref} target={featuredExternal ? "_blank" : undefined} rel={featuredExternal ? "noopener noreferrer" : undefined}>
         <div className="fr-eyebrow"><span>Newest writing</span><span>{featured.date}</span></div>
         <h3>{featured.title}</h3>
         <p>{featured.dek}</p>
-        <div className="fr-foot">{featured.minutes ? `Read · ${featured.minutes} min ↗` : "Coming soon"}</div>
+        <div className="fr-foot">{featured.publication ? `${featured.publication} ↗` : featured.minutes ? `Read · ${featured.minutes} min ↗` : "Coming soon"}</div>
       </a>
       <a className="fr-card fr-retreat" href="#/schedule">
         <div className="fr-eyebrow"><span>Next retreat</span><span>{next.when.split(",")[0]}</span></div>
@@ -384,31 +427,30 @@ function About() {
 // ───────────── writing ─────────────
 
 function Writing() {
-  const [filter, setFilter] = useState("all");
   return (
     <section className="page writing">
-      <PageTitle eyebrow="02 / Writing" title="A journal kept at the edge of practice" />
-      <div className="writing-filter">
-        {["all", "dharma", "natural-world", "tantra"].map(f => (
-          <button key={f} className={cx("wf", filter===f && "is-on")} onClick={()=>setFilter(f)}>
-            {f.replace("-", " ")}
-          </button>
-        ))}
-      </div>
+      <PageTitle eyebrow="02 / Writing" title="Essays &amp; published work" />
       <ol className="essays">
-        {ESSAYS.map(e => (
-          <li key={e.slug}>
-            <a href={`#/essay/${e.slug}`} className="essay-row">
-              <span className="er-date">{e.date}</span>
-              <span className="er-body">
-                <span className="er-title">{e.title}</span>
-                <span className="er-dek">{e.dek}</span>
-              </span>
-              {e.minutes && <span className="er-min">{e.minutes} min</span>}
-              <span className="er-arrow">↗</span>
-            </a>
-          </li>
-        ))}
+        {ESSAYS.map(e => {
+          const href = e.url || `#/essay/${e.slug}`;
+          const external = !!e.url;
+          return (
+            <li key={e.slug}>
+              <a href={href} className="essay-row" target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
+                <span className="er-date">{e.date}</span>
+                <span className="er-body">
+                  <span className="er-title">{e.title}</span>
+                  <span className="er-dek">{e.dek}</span>
+                </span>
+                {e.publication
+                  ? <span className="er-pub">{e.publication}</span>
+                  : e.minutes && <span className="er-min">{e.minutes} min</span>
+                }
+                <span className="er-arrow">↗</span>
+              </a>
+            </li>
+          );
+        })}
       </ol>
     </section>
   );
