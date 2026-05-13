@@ -67,7 +67,7 @@ const RETREATS = [
     where: "Wonderwell Mountain Refuge · Springfield, NH",
     kind: "Hybrid retreat",
     status: "open",
-    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
+    url: "https://naturaldharma.org/schedule/loving-awareness-in-the-living-world-hybrid/",
   },
   {
     when: "Sep 29 – Oct 5, 2026",
@@ -75,7 +75,7 @@ const RETREATS = [
     where: "Wonderwell Mountain Refuge · Springfield, NH",
     kind: "Residential retreat · 7 days",
     status: "open",
-    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
+    url: "https://naturaldharma.org/schedule/wild-awakening-embodying-the-wisdom-of-the-elements-residential-only/",
   },
   {
     when: "Oct 29 – Nov 1, 2026",
@@ -83,7 +83,7 @@ const RETREATS = [
     where: "Wonderwell Mountain Refuge · Springfield, NH",
     kind: "Hybrid retreat · 4 days",
     status: "save-the-date",
-    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
+    url: "https://naturaldharma.org/schedule/interwoven-a-journey-into-the-mycelial-heart-hybrid/",
   },
 ];
 
