@@ -24,16 +24,17 @@ const ESSAYS = [
   },
 ];
 
-const TALKS = [
-  { slug:"opening-into-awareness", title: "Opening Into Awareness", series: "Monday Night Meditation", date: "03.10.2026", duration: "47:12" },
-  { slug:"the-three-doors", title: "The Three Doors of Liberation", series: "Wonderwell Dharma Talk", date: "02.18.2026", duration: "1:02:30" },
-  { slug:"compassion-roots", title: "Compassion Has Roots", series: "Online Sangha", date: "01.27.2026", duration: "38:55" },
-  { slug:"resting-in-not-knowing", title: "Resting in Not Knowing", series: "Monday Night Meditation", date: "12.16.2025", duration: "44:08" },
-  { slug:"madman-wisdom", title: "The Wisdom of the Mad Yogi", series: "Tricycle Dharma Talk", date: "11.04.2025", duration: "52:19" },
-  { slug:"plant-medicine-buddhist-view", title: "A Buddhist View of Plant Medicines", series: "Lecture", date: "10.08.2025", duration: "1:14:42" },
-  { slug:"forest-mind", title: "Forest Mind: Practicing Outdoors", series: "Wilderness Dharma Series", date: "09.18.2025", duration: "41:22" },
-  { slug:"entheogens-integration", title: "Integration: After the Threshold", series: "Plant & Practice", date: "08.29.2025", duration: "58:04" },
-  { slug:"land-as-lineage", title: "Land as Lineage", series: "Wilderness Dharma Series", date: "07.22.2025", duration: "49:36" },
+const VIDEOS = [
+  { id: "uvPlEhjwS90", title: "Forest Teachings Part II: Finding Interbeing", series: "Natural Dharma Fellowship", date: "Oct 2025" },
+  { id: "aIqKgnUIij4", title: "Forest Teachings Part III: Breathing with Reverence", series: "Natural Dharma Fellowship", date: "Oct 2025" },
+  { id: "0wymhKpzQfE", title: "Reclaiming the Magic", series: "Mind & Life Podcast", date: "Aug 2025" },
+  { id: "sEWOtznK1a8", title: "Understanding Crazy Wisdom in Vajrayana Buddhism", series: "Noble Mind Podcast · Ep 49", date: "Jan 2022" },
+  { id: "mBpeyMjoq54", title: "An Interview with NDF's Lamas · Part I", series: "Natural Dharma Fellowship", date: "May 2022" },
+  { id: "vd2vHr60mbk", title: "An Interview with NDF's Lamas · Part III", series: "Natural Dharma Fellowship", date: "May 2022" },
+  { id: "92xJgUhpIeY", title: "An Interview with Our Lamas · Part IV", series: "Natural Dharma Fellowship", date: "May 2022" },
+  { id: "CaSM-lsrD0E", title: "Drukpa Kunley: The Mad Saint", series: "SSIUK Lecture", date: "" },
+  { id: "_JrOQtpV97I", title: "The Necessity of the Divine Feminine in the Climate Crisis", series: "with Rev. Dele", date: "May 2020" },
+  { id: "tMeURa1lbws", title: "Workshop on the Divine Feminine and Environmentalism", series: "with Rev. Dele", date: "May 2020" },
 ];
 
 const RETREATS = [
@@ -290,11 +291,11 @@ function FeaturedRow() {
         <p>{next.where}</p>
         <div className="fr-foot">{next.kind} ↗</div>
       </a>
-      <a className="fr-card fr-talk" href="#/teachings">
-        <div className="fr-eyebrow"><span>Latest talk</span><span>{TALKS[0].date}</span></div>
-        <h3>{TALKS[0].title}</h3>
-        <p>{TALKS[0].series}</p>
-        <div className="fr-foot">Listen · {TALKS[0].duration} ↗</div>
+      <a className="fr-card fr-talk" href={`https://www.youtube.com/watch?v=${VIDEOS[0].id}`} target="_blank" rel="noopener noreferrer">
+        <div className="fr-eyebrow"><span>Latest talk</span><span>{VIDEOS[0].date}</span></div>
+        <h3>{VIDEOS[0].title}</h3>
+        <p>{VIDEOS[0].series}</p>
+        <div className="fr-foot">Watch on YouTube ↗</div>
       </a>
     </div>
   );
@@ -441,90 +442,29 @@ function Essay({ slug }) {
   );
 }
 
-// ───────────── teachings (audio) ─────────────
+// ───────────── teachings (video) ─────────────
 
 function Teachings() {
-  const [playing, setPlaying] = useState(null); // slug
-  const [progress, setProgress] = useState(0); // 0..1
-  const rafRef = useRef(null);
-  const startRef = useRef(0);
-
-  const current = TALKS.find(t => t.slug === playing);
-  const durationSec = current ? parseDuration(current.duration) : 0;
-
-  useEffect(() => {
-    if (!playing) {
-      cancelAnimationFrame(rafRef.current);
-      return;
-    }
-    startRef.current = performance.now() - progress * durationSec * 1000;
-    const tick = () => {
-      const elapsed = (performance.now() - startRef.current) / 1000;
-      const p = Math.min(1, elapsed / durationSec);
-      setProgress(p);
-      if (p < 1) rafRef.current = requestAnimationFrame(tick);
-      else setPlaying(null);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [playing]);
-
-  const toggle = (slug) => {
-    if (playing === slug) {
-      setPlaying(null);
-    } else {
-      setProgress(0);
-      setPlaying(slug);
-    }
-  };
-
   return (
     <section className="page teachings">
-      <PageTitle eyebrow="03 / Teachings" title="Dharma talks &amp; recorded sessions" />
+      <PageTitle eyebrow="03 / Teachings" title="Talks &amp; recorded sessions" />
       <p className="page-lede">
-        A growing archive of Monday-night sits, retreat sessions, and longer talks.
-        Headphones welcome. Sit if you can.
+        Dharma talks, podcast appearances, and lectures — collected from across the web.
       </p>
-      <ul className="talks">
-        {TALKS.map(t => {
-          const isOn = playing === t.slug;
-          const p = isOn ? progress : 0;
-          return (
-            <li key={t.slug} className={cx("talk", isOn && "is-on")}>
-              <button className="play" onClick={()=>toggle(t.slug)} aria-label={isOn ? "Pause" : "Play"}>
-                {isOn ? <span className="pause"><i/><i/></span> : <span className="tri"/>}
-              </button>
-              <div className="talk-body">
-                <div className="talk-meta">
-                  <span>{t.series}</span>
-                  <span className="talk-dot">·</span>
-                  <span>{t.date}</span>
-                </div>
-                <div className="talk-title">{t.title}</div>
-                <div className="talk-bar">
-                  <div className="talk-bar-fill" style={{ width: `${p*100}%` }} />
-                  <div className="talk-bar-tick" style={{ left: `${p*100}%` }} />
-                </div>
-              </div>
-              <div className="talk-time">
-                {isOn ? formatTime(p * durationSec) + " / " : ""}{t.duration}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      {current && (
-        <div className="now-playing">
-          <div className="np-l">
-            <div className="np-pulse"><span/><span/><span/></div>
-            <div>
-              <div className="np-t">{current.title}</div>
-              <div className="np-s">{current.series} · {formatTime(progress * durationSec)} / {current.duration}</div>
+      <div className="videos-grid">
+        {VIDEOS.map(v => (
+          <a key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer" className="video-card">
+            <div className="video-thumb">
+              <img src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} />
+              <div className="video-play-btn">▶</div>
             </div>
-          </div>
-          <button className="np-stop" onClick={()=>setPlaying(null)}>Stop</button>
-        </div>
-      )}
+            <div className="video-meta">
+              <div className="video-series">{v.series}{v.date ? ` · ${v.date}` : ""}</div>
+              <div className="video-title">{v.title}</div>
+            </div>
+          </a>
+        ))}
+      </div>
     </section>
   );
 }
