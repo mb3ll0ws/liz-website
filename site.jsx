@@ -38,12 +38,20 @@ const TALKS = [
 
 const RETREATS = [
   {
+    when: "Mar 20, 2026 – Feb 18, 2027",
+    title: "Rewilding the Soul 2026–2027",
+    where: "Online · Council Practice",
+    kind: "Online series · year-long",
+    status: "ongoing",
+    url: "https://naturaldharma.org/schedule/rewilding-the-soul-2026-2027-coming-present-to-our-earth-based-lineage-online-series-with-council-practice/",
+  },
+  {
     when: "Jun 18 – 21, 2026",
     title: "Open Practice: A Nature-based Long Weekend",
     where: "Wonderwell Mountain Refuge · Springfield, NH",
     kind: "Residential retreat · 4 days",
     status: "open",
-    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
+    url: "https://naturaldharma.org/schedule/open-practice-in-nature-long-weekend-residential-only/",
   },
   {
     when: "Jun 21, 2026",
@@ -51,7 +59,7 @@ const RETREATS = [
     where: "Online",
     kind: "Online event",
     status: "open",
-    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
+    url: "https://naturaldharma.org/schedule/summer-solstice-celebration-online/",
   },
   {
     when: "Jul 24 – Aug 3, 2026",
@@ -546,7 +554,7 @@ function Schedule() {
               <span className="re-status-dot"/>
               {labelStatus(r.status)}
             </div>
-            <a className="re-cta" href="#/contact">Inquire →</a>
+            <a className="re-cta" href={r.url || "#/contact"} target={r.url ? "_blank" : undefined} rel={r.url ? "noopener noreferrer" : undefined}>Register →</a>
           </li>
         ))}
       </ol>
