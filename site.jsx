@@ -38,71 +38,44 @@ const TALKS = [
 
 const RETREATS = [
   {
-    when: "May 22 – 26, 2026",
-    title: "Resting in the Natural State",
+    when: "Jun 18 – 21, 2026",
+    title: "Open Practice: A Nature-based Long Weekend",
     where: "Wonderwell Mountain Refuge · Springfield, NH",
-    kind: "Residential retreat · 4 nights",
+    kind: "Residential retreat · 4 days",
     status: "open",
+    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
   },
   {
-    when: "Every Monday, 5:00 – 6:30 pm ET",
-    title: "Monday Night Meditation",
-    where: "Online · Zoom",
-    kind: "Drop-in",
-    status: "ongoing",
+    when: "Jun 21, 2026",
+    title: "Summer Solstice Celebration",
+    where: "Online",
+    kind: "Online event",
+    status: "open",
+    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
   },
   {
-    when: "July 11 – 18, 2026",
-    title: "Forest Dharma: A Practice Week in the White Mountains",
+    when: "Jul 24 – Aug 3, 2026",
+    title: "Loving Awareness in the Living World",
     where: "Wonderwell Mountain Refuge · Springfield, NH",
-    kind: "Residential retreat · 7 nights",
-    status: "waitlist",
-  },
-  {
-    when: "June 14 – 21, 2026",
-    title: "Wilderness Dharma: Solo & Council in the Adirondacks",
-    where: "Adirondack High Peaks · NY",
-    kind: "Backcountry retreat · 7 days",
+    kind: "Hybrid retreat",
     status: "open",
-    track: "wilderness",
+    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
   },
   {
-    when: "August 1 – 4, 2026",
-    title: "The Medicine of Place: A Wilderness Sit",
-    where: "Wonderwell back acres · Springfield, NH",
-    kind: "Land-based retreat · 4 days",
+    when: "Sep 29 – Oct 5, 2026",
+    title: "Wild Awakening: Embodying the Wisdom of the Elements",
+    where: "Wonderwell Mountain Refuge · Springfield, NH",
+    kind: "Residential retreat · 7 days",
     status: "open",
-    track: "wilderness",
+    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
   },
   {
-    when: "August 22 – 25, 2026",
-    title: "Plant Allies & the Natural State",
-    where: "Private retreat center · Hudson Valley, NY",
-    kind: "Inquiry intensive · invitation only",
-    status: "application",
-    track: "plant-medicine",
-  },
-  {
-    when: "September 3 – 14, 2026",
-    title: "Bhutan Pilgrimage: Sacred Sites of the Himalayan Heart",
-    where: "Paro · Thimphu · Bumthang",
-    kind: "Pilgrimage · 12 days",
-    status: "few-spots",
-  },
-  {
-    when: "October 9 – 12, 2026",
-    title: "Entheogens, Dharma, and the Threshold",
-    where: "Online intensive + private follow-up sessions",
-    kind: "Teaching weekend",
-    status: "open",
-    track: "plant-medicine",
-  },
-  {
-    when: "November 6 – 9, 2026",
-    title: "Tantra in Everyday Life",
-    where: "Garrison Institute · Garrison, NY",
-    kind: "Weekend intensive",
-    status: "open",
+    when: "Oct 29 – Nov 1, 2026",
+    title: "Interwoven: A Journey Into the Mycelial Heart",
+    where: "Wonderwell Mountain Refuge · Springfield, NH",
+    kind: "Hybrid retreat · 4 days",
+    status: "save-the-date",
+    url: "https://naturaldharma.org/schedule/list/?tribe-bar-teacher=liz+monson",
   },
 ];
 
@@ -582,7 +555,7 @@ function Schedule() {
 }
 
 function labelStatus(s) {
-  return ({ open: "Registration open", waitlist: "Waitlist", "few-spots": "Few spots", ongoing: "Ongoing", application: "Application" })[s] || s;
+  return ({ open: "Registration open", waitlist: "Waitlist", "few-spots": "Few spots", ongoing: "Ongoing", application: "Application", "save-the-date": "Save the Date" })[s] || s;
 }
 
 // ───────────── books ─────────────
