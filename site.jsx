@@ -92,17 +92,28 @@ const BOOKS = [
     title: "More Than a Madman",
     sub: "The Divine Words of Drukpa Kunley",
     year: "2014",
+    cover: "images/book-more-than-a-madman.jpg",
     spineColor: "#7a3a2a",
+    buy: [
+      { label: "Open Library", url: "https://openlibrary.org/works/OL20125938W/More_Than_a_Madman" },
+    ],
   },
   {
     title: "Tales of a Mad Yogi",
     sub: "The Life and Wild Wisdom of Drukpa Kunley",
     year: "2021",
+    cover: "images/book-tales-of-a-mad-yogi.jpg",
     spineColor: "#3d4a2a",
+    buy: [
+      { label: "Amazon", url: "https://www.amazon.com/Tales-Mad-Yogi-Wisdom-Drukpa/dp/1611807050" },
+      { label: "Kindle", url: "https://www.amazon.com/Tales-Mad-Yogi-Wisdom-Drukpa-ebook/dp/B091M97WX3" },
+      { label: "Penguin Random House", url: "https://www.penguinrandomhouse.com/books/670712/tales-of-a-mad-yogi-by-elizabeth-l-monson/" },
+    ],
   },
   {
     title: "Buddhist Tantra",
-    sub: "A Practitioner's Way (forthcoming, Shambhala)",
+    sub: "A Practitioner's Way",
+    publisher: "Shambhala · forthcoming",
     year: "2026",
     spineColor: "#2a3548",
     forthcoming: true,
@@ -576,18 +587,30 @@ function Books() {
         {BOOKS.map(b => (
           <article key={b.title} className="book">
             <div className="book-cover" style={{ background: b.spineColor }}>
-              <div className="book-cover-inner">
-                <div className="book-rule" />
-                <div className="book-title">{b.title}</div>
-                <div className="book-sub">{b.sub}</div>
-                <div className="book-author">Elizabeth Monson</div>
-              </div>
+              {b.cover
+                ? <img src={b.cover} alt={b.title} className="book-cover-img" />
+                : <div className="book-cover-inner">
+                    <div className="book-rule" />
+                    <div className="book-title">{b.title}</div>
+                    <div className="book-sub">{b.sub}</div>
+                    <div className="book-author">Elizabeth Monson</div>
+                  </div>
+              }
               {b.forthcoming && <div className="book-forth">Forthcoming · {b.year}</div>}
             </div>
             <div className="book-meta">
               <div className="book-year">{b.year}</div>
               <div className="book-name">{b.title}</div>
-              <div className="book-sub2">{b.sub}</div>
+              <div className="book-sub2">{b.publisher || b.sub}</div>
+              {b.buy && b.buy.length > 0 && (
+                <div className="book-buy">
+                  {b.buy.map(link => (
+                    <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="book-buy-link">
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </article>
         ))}
