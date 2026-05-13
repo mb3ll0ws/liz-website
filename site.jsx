@@ -14,7 +14,15 @@ const NAV = [
   ["contact", "Contact"],
 ];
 
-const ESSAYS = [];
+const ESSAYS = [
+  {
+    slug: "coming-soon",
+    date: "05.13.2026",
+    title: "Coming Soon",
+    dek: "New writing is on its way.",
+    minutes: null,
+  },
+];
 
 const TALKS = [
   { slug:"opening-into-awareness", title: "Opening Into Awareness", series: "Monday Night Meditation", date: "03.10.2026", duration: "47:12" },
@@ -282,7 +290,7 @@ function FeaturedRow() {
         <div className="fr-eyebrow"><span>Newest writing</span><span>{featured.date}</span></div>
         <h3>{featured.title}</h3>
         <p>{featured.dek}</p>
-        <div className="fr-foot">Read · {featured.minutes} min ↗</div>
+        <div className="fr-foot">{featured.minutes ? `Read · ${featured.minutes} min ↗` : "Coming soon"}</div>
       </a>
       <a className="fr-card fr-retreat" href="#/schedule">
         <div className="fr-eyebrow"><span>Next retreat</span><span>{next.when.split(",")[0]}</span></div>
@@ -403,7 +411,7 @@ function Writing() {
                 <span className="er-title">{e.title}</span>
                 <span className="er-dek">{e.dek}</span>
               </span>
-              <span className="er-min">{e.minutes} min</span>
+              {e.minutes && <span className="er-min">{e.minutes} min</span>}
               <span className="er-arrow">↗</span>
             </a>
           </li>
@@ -420,7 +428,8 @@ function Essay({ slug }) {
       <a className="back" href="#/writing">← Back to journal</a>
       <header className="ep-head">
         <div className="ep-meta">
-          <span>{e.date}</span><span>·</span><span>{e.minutes} min</span>
+          <span>{e.date}</span>
+          {e.minutes && <><span>·</span><span>{e.minutes} min</span></>}
         </div>
         <h1>{e.title}</h1>
         <p className="ep-dek">{e.dek}</p>
