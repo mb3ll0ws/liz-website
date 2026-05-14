@@ -8,6 +8,7 @@ const NAV = [
   ["about", "About"],
   ["writing", "Writing"],
   ["teachings", "Teachings"],
+  ["plant-medicine", "Plant Medicine"],
   ["schedule", "Schedule"],
   ["books", "Books"],
   ["pilgrimages", "Pilgrimages"],
@@ -654,6 +655,106 @@ function Pilgrimages() {
   );
 }
 
+// ───────────── plant medicine ─────────────
+
+const PM_MEDIA = [
+  {
+    kind: "vimeo",
+    id: "946433355",
+    hash: "507d0f4371",
+    title: "Psychedelic Sangha: Where Buddhism and Psychedelics Meet",
+    series: "Natural Dharma Fellowship",
+    date: "2024",
+    url: "https://vimeo.com/946433355/507d0f4371",
+  },
+  {
+    kind: "podcast",
+    title: "Reclaiming the Magic",
+    series: "Mind & Life Podcast",
+    date: "Aug 2025",
+    dek: "On the intersection of Buddhist meditation, nature-based practice, and psychedelics as pathways toward liberation.",
+    url: "https://podcast.mindandlife.org/liz-monson/",
+  },
+  {
+    kind: "youtube",
+    id: "uWtQHIHpooM",
+    title: "This Sentient Earth",
+    series: "Council on the Uncertain Human Future",
+    date: "2023",
+    url: "https://youtu.be/uWtQHIHpooM",
+  },
+  {
+    kind: "external",
+    title: "Psychedelic Buddhism 2026 Conference",
+    series: "Virtual Keynote · The New School, NYC",
+    date: "Apr 2026",
+    dek: "Liz delivered a keynote on combining Buddhist practice with plant medicines as portals for accessing the natural state.",
+    url: "https://psychedelicbuddhism.org/",
+  },
+];
+
+function PlantMedicine() {
+  return (
+    <section className="page plant-medicine">
+      <PageTitle eyebrow="Plant Medicine" title="Buddhism &amp; plant medicines" />
+      <div className="pm-intro">
+        <p className="lead">
+          Liz is engaged in an ongoing exploration of the potential of combining
+          Buddhist meditation and indigenous plant medicines and psychedelics as
+          portals for accessing and resting in the natural state.
+        </p>
+        <p>
+          She approaches this work carefully and with deep respect for both the
+          Buddhist teachings and the medicines themselves — not as a shortcut,
+          but as a complement to sustained practice for those called to explore it.
+        </p>
+      </div>
+
+      <div className="pm-sangha">
+        <h2>Psychedelic Sangha</h2>
+        <p>
+          Liz is creating a Psychedelic Sangha within Natural Dharma Fellowship —
+          a community for meditators who are interested in exploring the intersection
+          of Buddhist practice and psychedelics. More details coming soon.
+        </p>
+        <a href="#/contact" className="btn ghost">Get in touch to learn more →</a>
+      </div>
+
+      <h2 className="pm-section-title">Talks &amp; appearances</h2>
+      <div className="videos-grid">
+        {PM_MEDIA.map((m, i) => {
+          if (m.kind === "youtube") {
+            return (
+              <a key={i} href={m.url} target="_blank" rel="noopener noreferrer" className="video-card">
+                <div className="video-thumb">
+                  <img src={`https://img.youtube.com/vi/${m.id}/hqdefault.jpg`} alt={m.title} />
+                  <div className="video-play-btn">▶</div>
+                </div>
+                <div className="video-meta">
+                  <div className="video-series">{m.series}{m.date ? ` · ${m.date}` : ""}</div>
+                  <div className="video-title">{m.title}</div>
+                </div>
+              </a>
+            );
+          }
+          return (
+            <a key={i} href={m.url} target="_blank" rel="noopener noreferrer" className="video-card pm-card">
+              <div className="video-thumb pm-thumb">
+                <div className="pm-kind-label">{m.kind === "vimeo" ? "▶ Video" : m.kind === "podcast" ? "◉ Podcast" : "◈ Event"}</div>
+              </div>
+              <div className="video-meta">
+                <div className="video-series">{m.series}{m.date ? ` · ${m.date}` : ""}</div>
+                <div className="video-title">{m.title}</div>
+                {m.dek && <div className="video-dek">{m.dek}</div>}
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 // ───────────── contact ─────────────
 
 function Contact() {
@@ -783,6 +884,7 @@ function App() {
     case "schedule": body = <Schedule/>; break;
     case "books": body = <Books/>; break;
     case "pilgrimages": body = <Pilgrimages/>; break;
+    case "plant-medicine": body = <PlantMedicine/>; break;
     case "contact": body = <Contact/>; break;
     default:
       body = tw.home === "manuscript" ? <HomeManuscript/>
