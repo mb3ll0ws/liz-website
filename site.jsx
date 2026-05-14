@@ -618,19 +618,16 @@ function Pilgrimages() {
       </p>
       <div className="pilg-grid">
         <figure className="pilg-img pilg-tall">
-          <img src="images/prayer-flags.jpeg" alt="Prayer flags on a Bhutanese ridge"/>
-          <figcaption>Prayer flags · Dochula pass</figcaption>
+          <img src="images/prayer-flags.jpeg" alt="Prayer flags" />
         </figure>
         <figure className="pilg-img pilg-wide">
-          <img src="images/bhutan-monk.jpeg" alt="A young monk crosses a courtyard"/>
-          <figcaption>A young monk · Bumthang</figcaption>
+          <img src="images/bhutan-monk.jpeg" alt="A young monk" />
         </figure>
         <div className="pilg-text">
           <p>Details about the itinerary, cost, and logistics will be shared as they become available.</p>
         </div>
         <figure className="pilg-img pilg-tall">
-          <img src="images/sky.jpeg" alt="High sky over the Himalayas"/>
-          <figcaption>Above Trongsa</figcaption>
+          <img src="images/sky.jpeg" alt="Sky over the Himalayas" />
         </figure>
         <div className="pilg-cta">
           <div className="pilg-cta-h">Next pilgrimage</div>
