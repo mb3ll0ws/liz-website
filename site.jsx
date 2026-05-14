@@ -613,9 +613,8 @@ function Pilgrimages() {
     <section className="page pilgrimages">
       <PageTitle eyebrow="06 / Pilgrimages" title="Walking with the Himalayan heart" />
       <p className="page-lede">
-        Once a year, a small group travels with Liz to the sacred sites of Bhutan —
-        a slow, attentive pilgrimage in the company of monks, prayer flags, and
-        long mountain weather.
+        More information about this pilgrimage is coming. If you'd like to express
+        your interest or learn more, please reach out directly.
       </p>
       <div className="pilg-grid">
         <figure className="pilg-img pilg-tall">
@@ -627,18 +626,7 @@ function Pilgrimages() {
           <figcaption>A young monk · Bumthang</figcaption>
         </figure>
         <div className="pilg-text">
-          <h3>What the days look like</h3>
-          <p>
-            Mornings begin in the shrine room, before light. We walk to monasteries
-            with stone underfoot and butter lamps overhead. Afternoons are
-            unhurried — tea, conversation, time with the land. Each evening,
-            practice and a short teaching.
-          </p>
-          <p>
-            We stay in family-run guesthouses where possible. The pace is gentle.
-            The country is steep. The point is not to see Bhutan — it is to let
-            Bhutan see you.
-          </p>
+          <p>Details about the itinerary, cost, and logistics will be shared as they become available.</p>
         </div>
         <figure className="pilg-img pilg-tall">
           <img src="images/sky.jpeg" alt="High sky over the Himalayas"/>
@@ -646,9 +634,9 @@ function Pilgrimages() {
         </figure>
         <div className="pilg-cta">
           <div className="pilg-cta-h">Next pilgrimage</div>
-          <div className="pilg-cta-d">September 3 – 14, 2026</div>
-          <div className="pilg-cta-w">Paro · Thimphu · Bumthang</div>
-          <a href="#/contact" className="btn">Request the itinerary →</a>
+          <div className="pilg-cta-d">November 1 – 14, 2027</div>
+          <div className="pilg-cta-w">Bhutan</div>
+          <a href="mailto:chinacat108@gmail.com" className="btn">Express your interest →</a>
         </div>
       </div>
     </section>
