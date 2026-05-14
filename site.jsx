@@ -252,15 +252,36 @@ function HomeEditorial() {
     <section className="home-editorial">
       <div className="he-photo">
         <img src="images/portrait-thangka.jpeg" alt="Lama Liz Monson" />
-        <div className="he-photo-cap">Wonderwell · 2025</div>
       </div>
       <div className="he-leaf"><Leaf/></div>
       <div className="he-manifesto">
         <p>
-          Liz is a dharma teacher exploring the intersection of Buddhist practice
-          and entheogens — and the natural state that has been quietly waiting
-          underneath both.
+          Liz Monson is a dharma teacher, scholar, and writer exploring the
+          intersection of Buddhist practice, the natural world, and plant medicines —
+          and the natural state that has been quietly waiting underneath all of it.
         </p>
+        <div className="he-body">
+          <p>
+            She is the Spiritual Co-Director of{" "}
+            <a href="https://naturaldharma.org" target="_blank" rel="noreferrer">Natural Dharma Fellowship</a>{" "}
+            and Managing Teacher at Wonderwell Mountain Refuge in Springfield, New Hampshire.
+            Authorized as a lineage holder in the Kagyu tradition after more than thirty years
+            of practice and study, she holds a doctorate in religion from Harvard University.
+          </p>
+          <p>
+            Her teaching draws on Tibetan Buddhist practice, eco-dharma, and an ongoing
+            inquiry into how indigenous plant medicines and psychedelics can serve — carefully,
+            and in the company of sustained practice — as portals into the natural state.
+            She leads pilgrimages to Bhutan and is creating a Psychedelic Sangha within NDF
+            for practitioners curious about this intersection.
+          </p>
+          <div className="he-links">
+            <a href="#/writing" className="he-link">Writing →</a>
+            <a href="#/plant-medicine" className="he-link">Plant Medicine →</a>
+            <a href="#/schedule" className="he-link">Upcoming retreats →</a>
+            <a href="#/pilgrimages" className="he-link">Bhutan 2027 →</a>
+          </div>
+        </div>
       </div>
       <FeaturedRow />
     </section>
