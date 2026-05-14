@@ -224,7 +224,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="ft-col">
         <div className="ft-h">Correspondence</div>
-        <div>liz@lamaliz.org</div>
+        <div><a href="#/contact">liz@lamaliz.org</a></div>
         <div>Booking · press · sangha</div>
       </div>
       <div className="ft-col">
@@ -239,7 +239,7 @@ function Footer() {
       </div>
       <div className="ft-col ft-meta">
         <div>© Elizabeth Monson, MMXXVI</div>
-        <div>Site as practice. Built slowly.</div>
+        <div>Built by <a href="https://www.bellowsand.co" target="_blank" rel="noreferrer">Bellows &amp; Co.</a></div>
       </div>
     </footer>
   );
