@@ -198,7 +198,7 @@ em{font-style:italic}
 .books-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
 .book{display:flex;flex-direction:column;gap:1.4rem}
 .book-cover{aspect-ratio:2/3;position:relative;display:flex;align-items:center;justify-content:center;padding:2rem;color:#f0e9d6;box-shadow:8px 8px 0 rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .3s}
-.book:hover .book-cover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.08)}
+@media (hover: hover){.book:hover .book-cover{transform:translate(-4px,-4px);box-shadow:12px 12px 0 rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.08)}}
 .book-cover-inner{text-align:center}
 .book-rule{width:40px;height:1px;background:rgba(255,255,255,.4);margin:0 auto 1.4rem}
 .book-title{font-size:1.6rem;line-height:1.15;margin-bottom:.6rem;font-style:italic}
@@ -303,8 +303,11 @@ em{font-style:italic}
   .site-footer{grid-template-columns:1fr 1fr}
 }
 @media (max-width: 600px){
-  /* Books: single column on phones */
-  .books-grid{grid-template-columns:1fr;max-width:280px;margin-left:auto;margin-right:auto}
+  /* Books: horizontal list on phones — thumbnail left, meta right */
+  .books-grid{grid-template-columns:1fr;max-width:100%}
+  .book{flex-direction:row;align-items:flex-start;gap:1.2rem}
+  .book-cover{width:90px;flex-shrink:0;aspect-ratio:2/3}
+  .book-meta{flex:1;padding-top:0;border-top:none;border-left:1px solid var(--rule);padding-left:1rem}
   /* Plant medicine sangha box */
   .pm-sangha{padding:1.5rem}
   /* Videos: ensure single column */
