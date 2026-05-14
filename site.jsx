@@ -239,7 +239,7 @@ function Footer() {
       </div>
       <div className="ft-col ft-meta">
         <div>© Elizabeth Monson, MMXXVI</div>
-        <div>Built by <a href="https://www.bellowsand.co" target="_blank" rel="noreferrer">Bellows &amp; Co.</a></div>
+        <div>Built by <a href="https://www.bellowsandco.com" target="_blank" rel="noreferrer">Bellows &amp; Co.</a></div>
       </div>
     </footer>
   );
